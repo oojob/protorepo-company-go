@@ -158,6 +158,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CompanyClient interface {
+	/// Used to create an company entity
 	CreateCompany(ctx context.Context, in *CreateCompanyReq, opts ...grpc.CallOption) (*CreateCompanyRes, error)
 }
 
@@ -180,6 +181,7 @@ func (c *companyClient) CreateCompany(ctx context.Context, in *CreateCompanyReq,
 
 // CompanyServer is the server API for Company service.
 type CompanyServer interface {
+	/// Used to create an company entity
 	CreateCompany(context.Context, *CreateCompanyReq) (*CreateCompanyRes, error)
 }
 
