@@ -137,7 +137,15 @@ func (m *Company) Validate() error {
 
 	// no validation rules for Description
 
-	// no validation rules for LastActive
+	if v, ok := interface{}(m.GetLastActive()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CompanyValidationError{
+				field:  "LastActive",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	// no validation rules for HiringStatus
 
