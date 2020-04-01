@@ -36,24 +36,23 @@ var (
 // define the regex for a UUID once up-front
 var _service_uuidPattern = regexp.MustCompile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
-// Validate checks the field values on CreateCompanyReq with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *CreateCompanyReq) Validate() error {
+// Validate checks the field values on Range with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Range) Validate() error {
 	if m == nil {
 		return nil
 	}
 
-	// no validation rules for Name
+	// no validation rules for Min
 
-	// no validation rules for Descriptioon
+	// no validation rules for Max
 
 	return nil
 }
 
-// CreateCompanyReqValidationError is the validation error returned by
-// CreateCompanyReq.Validate if the designated constraints aren't met.
-type CreateCompanyReqValidationError struct {
+// RangeValidationError is the validation error returned by Range.Validate if
+// the designated constraints aren't met.
+type RangeValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -61,22 +60,22 @@ type CreateCompanyReqValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateCompanyReqValidationError) Field() string { return e.field }
+func (e RangeValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateCompanyReqValidationError) Reason() string { return e.reason }
+func (e RangeValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateCompanyReqValidationError) Cause() error { return e.cause }
+func (e RangeValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateCompanyReqValidationError) Key() bool { return e.key }
+func (e RangeValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateCompanyReqValidationError) ErrorName() string { return "CreateCompanyReqValidationError" }
+func (e RangeValidationError) ErrorName() string { return "RangeValidationError" }
 
 // Error satisfies the builtin error interface
-func (e CreateCompanyReqValidationError) Error() string {
+func (e RangeValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -88,14 +87,14 @@ func (e CreateCompanyReqValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateCompanyReq.%s: %s%s",
+		"invalid %sRange.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateCompanyReqValidationError{}
+var _ error = RangeValidationError{}
 
 var _ interface {
 	Field() string
@@ -103,26 +102,201 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateCompanyReqValidationError{}
+} = RangeValidationError{}
 
-// Validate checks the field values on CreateCompanyRes with the rules defined
-// in the proto definition for this message. If any rules are violated, an
-// error is returned.
-func (m *CreateCompanyRes) Validate() error {
+// Validate checks the field values on Company with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Company) Validate() error {
 	if m == nil {
 		return nil
 	}
 
-	// no validation rules for Status
+	// no validation rules for Id
+
+	// no validation rules for Name
+
+	// no validation rules for CreatedBy
+
+	// no validation rules for Url
+
+	// no validation rules for Logo
+
+	// no validation rules for Location
+
+	// no validation rules for FoundedYear
+
+	if v, ok := interface{}(m.GetNoOfEmployees()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CompanyValidationError{
+				field:  "NoOfEmployees",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for Description
+
+	// no validation rules for LastActive
+
+	// no validation rules for HiringStatus
+
+	if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CompanyValidationError{
+				field:  "CreatedAt",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CompanyValidationError{
+				field:  "UpdatedAt",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// CompanyValidationError is the validation error returned by Company.Validate
+// if the designated constraints aren't met.
+type CompanyValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CompanyValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CompanyValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CompanyValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CompanyValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CompanyValidationError) ErrorName() string { return "CompanyValidationError" }
+
+// Error satisfies the builtin error interface
+func (e CompanyValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCompany.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CompanyValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CompanyValidationError{}
+
+// Validate checks the field values on Empty with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Empty) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// EmptyValidationError is the validation error returned by Empty.Validate if
+// the designated constraints aren't met.
+type EmptyValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e EmptyValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e EmptyValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e EmptyValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e EmptyValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e EmptyValidationError) ErrorName() string { return "EmptyValidationError" }
+
+// Error satisfies the builtin error interface
+func (e EmptyValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sEmpty.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = EmptyValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = EmptyValidationError{}
+
+// Validate checks the field values on Id with the rules defined in the proto
+// definition for this message. If any rules are violated, an error is returned.
+func (m *Id) Validate() error {
+	if m == nil {
+		return nil
+	}
 
 	// no validation rules for Id
 
 	return nil
 }
 
-// CreateCompanyResValidationError is the validation error returned by
-// CreateCompanyRes.Validate if the designated constraints aren't met.
-type CreateCompanyResValidationError struct {
+// IdValidationError is the validation error returned by Id.Validate if the
+// designated constraints aren't met.
+type IdValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -130,22 +304,22 @@ type CreateCompanyResValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateCompanyResValidationError) Field() string { return e.field }
+func (e IdValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateCompanyResValidationError) Reason() string { return e.reason }
+func (e IdValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateCompanyResValidationError) Cause() error { return e.cause }
+func (e IdValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateCompanyResValidationError) Key() bool { return e.key }
+func (e IdValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateCompanyResValidationError) ErrorName() string { return "CreateCompanyResValidationError" }
+func (e IdValidationError) ErrorName() string { return "IdValidationError" }
 
 // Error satisfies the builtin error interface
-func (e CreateCompanyResValidationError) Error() string {
+func (e IdValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -157,14 +331,14 @@ func (e CreateCompanyResValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateCompanyRes.%s: %s%s",
+		"invalid %sId.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateCompanyResValidationError{}
+var _ error = IdValidationError{}
 
 var _ interface {
 	Field() string
@@ -172,4 +346,86 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateCompanyResValidationError{}
+} = IdValidationError{}
+
+// Validate checks the field values on ReadCompaniesRes with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReadCompaniesRes) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	for idx, item := range m.GetCompanies() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ReadCompaniesResValidationError{
+					field:  fmt.Sprintf("Companies[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	// no validation rules for Status
+
+	return nil
+}
+
+// ReadCompaniesResValidationError is the validation error returned by
+// ReadCompaniesRes.Validate if the designated constraints aren't met.
+type ReadCompaniesResValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadCompaniesResValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadCompaniesResValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadCompaniesResValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadCompaniesResValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadCompaniesResValidationError) ErrorName() string { return "ReadCompaniesResValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReadCompaniesResValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadCompaniesRes.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadCompaniesResValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadCompaniesResValidationError{}

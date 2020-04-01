@@ -179,18 +179,30 @@
             <ul>
               
                 <li>
-                  <a href="#company.CreateCompanyReq"><span class="badge">M</span>CreateCompanyReq</a>
+                  <a href="#company.Company"><span class="badge">M</span>Company</a>
                 </li>
               
                 <li>
-                  <a href="#company.CreateCompanyRes"><span class="badge">M</span>CreateCompanyRes</a>
+                  <a href="#company.Empty"><span class="badge">M</span>Empty</a>
+                </li>
+              
+                <li>
+                  <a href="#company.Id"><span class="badge">M</span>Id</a>
+                </li>
+              
+                <li>
+                  <a href="#company.Range"><span class="badge">M</span>Range</a>
+                </li>
+              
+                <li>
+                  <a href="#company.ReadCompaniesRes"><span class="badge">M</span>ReadCompaniesRes</a>
                 </li>
               
               
               
               
                 <li>
-                  <a href="#company.Company"><span class="badge">S</span>Company</a>
+                  <a href="#company.CompanyService"><span class="badge">S</span>CompanyService</a>
                 </li>
               
             </ul>
@@ -208,8 +220,8 @@
       <p>Company entity related messages.</p><p>This file is resposible for all operation related to company entity.</p>
 
       
-        <h3 id="company.CreateCompanyReq">CreateCompanyReq</h3>
-        <p>CreateComapny service request object</p>
+        <h3 id="company.Company">Company</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -217,50 +229,196 @@
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Unique company name </p></td>
-                </tr>
-              
-                <tr>
-                  <td>descriptioon</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Coompany description </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="company.CreateCompanyRes">CreateCompanyRes</h3>
-        <p>CreateComapny service response object</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Company creation operation respone status </p></td>
-                </tr>
               
                 <tr>
                   <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Company unique ID </p></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_by</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>logo</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>founded_year</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>no_of_employees</td>
+                  <td><a href="#company.Range">Range</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_active</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hiring_status</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>skills</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="company.Empty">Empty</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="company.Id">Id</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="company.Range">Range</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>min</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="company.ReadCompaniesRes">ReadCompaniesRes</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>companies</td>
+                  <td><a href="#company.Company">Company</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -276,8 +434,8 @@
       
 
       
-        <h3 id="company.Company">Company</h3>
-        <p>Service defination for company entity</p>
+        <h3 id="company.CompanyService">CompanyService</h3>
+        <p></p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -286,9 +444,37 @@
             
               <tr>
                 <td>CreateCompany</td>
-                <td><a href="#company.CreateCompanyReq">CreateCompanyReq</a></td>
-                <td><a href="#company.CreateCompanyRes">CreateCompanyRes</a></td>
-                <td><p>Used to create an company entity</p></td>
+                <td><a href="#company.Company">Company</a></td>
+                <td><a href="#company.Id">Id</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ReadCompanies</td>
+                <td><a href="#company.Empty">Empty</a></td>
+                <td><a href="#company.ReadCompaniesRes">ReadCompaniesRes</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ReadCompany</td>
+                <td><a href="#company.Id">Id</a></td>
+                <td><a href="#company.Company">Company</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCompany</td>
+                <td><a href="#company.Company">Company</a></td>
+                <td><a href="#company.Id">Id</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteCompany</td>
+                <td><a href="#company.Id">Id</a></td>
+                <td><a href="#company.Id">Id</a></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

@@ -7,6 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,107 +25,319 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-//*
-// CreateComapny service request object
-type CreateCompanyReq struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Descriptioon         string   `protobuf:"bytes,2,opt,name=descriptioon,proto3" json:"descriptioon,omitempty"`
+type Range struct {
+	Min                  int64    `protobuf:"varint,1,opt,name=min,proto3" json:"min,omitempty"`
+	Max                  int64    `protobuf:"varint,2,opt,name=max,proto3" json:"max,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateCompanyReq) Reset()         { *m = CreateCompanyReq{} }
-func (m *CreateCompanyReq) String() string { return proto.CompactTextString(m) }
-func (*CreateCompanyReq) ProtoMessage()    {}
-func (*CreateCompanyReq) Descriptor() ([]byte, []int) {
+func (m *Range) Reset()         { *m = Range{} }
+func (m *Range) String() string { return proto.CompactTextString(m) }
+func (*Range) ProtoMessage()    {}
+func (*Range) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a0b84a42fa06f626, []int{0}
 }
 
-func (m *CreateCompanyReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateCompanyReq.Unmarshal(m, b)
+func (m *Range) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Range.Unmarshal(m, b)
 }
-func (m *CreateCompanyReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateCompanyReq.Marshal(b, m, deterministic)
+func (m *Range) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Range.Marshal(b, m, deterministic)
 }
-func (m *CreateCompanyReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateCompanyReq.Merge(m, src)
+func (m *Range) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Range.Merge(m, src)
 }
-func (m *CreateCompanyReq) XXX_Size() int {
-	return xxx_messageInfo_CreateCompanyReq.Size(m)
+func (m *Range) XXX_Size() int {
+	return xxx_messageInfo_Range.Size(m)
 }
-func (m *CreateCompanyReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateCompanyReq.DiscardUnknown(m)
+func (m *Range) XXX_DiscardUnknown() {
+	xxx_messageInfo_Range.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateCompanyReq proto.InternalMessageInfo
+var xxx_messageInfo_Range proto.InternalMessageInfo
 
-func (m *CreateCompanyReq) GetName() string {
+func (m *Range) GetMin() int64 {
 	if m != nil {
-		return m.Name
+		return m.Min
 	}
-	return ""
+	return 0
 }
 
-func (m *CreateCompanyReq) GetDescriptioon() string {
+func (m *Range) GetMax() int64 {
 	if m != nil {
-		return m.Descriptioon
+		return m.Max
 	}
-	return ""
+	return 0
 }
 
-//*
-// CreateComapny service response object
-type CreateCompanyRes struct {
-	Status               bool     `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Id                   string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type Company struct {
+	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedBy            string               `protobuf:"bytes,3,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	Url                  string               `protobuf:"bytes,4,opt,name=url,proto3" json:"url,omitempty"`
+	Logo                 string               `protobuf:"bytes,5,opt,name=logo,proto3" json:"logo,omitempty"`
+	Location             string               `protobuf:"bytes,6,opt,name=location,proto3" json:"location,omitempty"`
+	FoundedYear          string               `protobuf:"bytes,7,opt,name=founded_year,json=foundedYear,proto3" json:"founded_year,omitempty"`
+	NoOfEmployees        *Range               `protobuf:"bytes,8,opt,name=no_of_employees,json=noOfEmployees,proto3" json:"no_of_employees,omitempty"`
+	Description          string               `protobuf:"bytes,10,opt,name=description,proto3" json:"description,omitempty"`
+	LastActive           bool                 `protobuf:"varint,11,opt,name=last_active,json=lastActive,proto3" json:"last_active,omitempty"`
+	HiringStatus         bool                 `protobuf:"varint,12,opt,name=hiring_status,json=hiringStatus,proto3" json:"hiring_status,omitempty"`
+	Skills               []string             `protobuf:"bytes,13,rep,name=skills,proto3" json:"skills,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *CreateCompanyRes) Reset()         { *m = CreateCompanyRes{} }
-func (m *CreateCompanyRes) String() string { return proto.CompactTextString(m) }
-func (*CreateCompanyRes) ProtoMessage()    {}
-func (*CreateCompanyRes) Descriptor() ([]byte, []int) {
+func (m *Company) Reset()         { *m = Company{} }
+func (m *Company) String() string { return proto.CompactTextString(m) }
+func (*Company) ProtoMessage()    {}
+func (*Company) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a0b84a42fa06f626, []int{1}
 }
 
-func (m *CreateCompanyRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateCompanyRes.Unmarshal(m, b)
+func (m *Company) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Company.Unmarshal(m, b)
 }
-func (m *CreateCompanyRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateCompanyRes.Marshal(b, m, deterministic)
+func (m *Company) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Company.Marshal(b, m, deterministic)
 }
-func (m *CreateCompanyRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateCompanyRes.Merge(m, src)
+func (m *Company) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Company.Merge(m, src)
 }
-func (m *CreateCompanyRes) XXX_Size() int {
-	return xxx_messageInfo_CreateCompanyRes.Size(m)
+func (m *Company) XXX_Size() int {
+	return xxx_messageInfo_Company.Size(m)
 }
-func (m *CreateCompanyRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateCompanyRes.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateCompanyRes proto.InternalMessageInfo
-
-func (m *CreateCompanyRes) GetStatus() bool {
-	if m != nil {
-		return m.Status
-	}
-	return false
+func (m *Company) XXX_DiscardUnknown() {
+	xxx_messageInfo_Company.DiscardUnknown(m)
 }
 
-func (m *CreateCompanyRes) GetId() string {
+var xxx_messageInfo_Company proto.InternalMessageInfo
+
+func (m *Company) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
+func (m *Company) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Company) GetCreatedBy() string {
+	if m != nil {
+		return m.CreatedBy
+	}
+	return ""
+}
+
+func (m *Company) GetUrl() string {
+	if m != nil {
+		return m.Url
+	}
+	return ""
+}
+
+func (m *Company) GetLogo() string {
+	if m != nil {
+		return m.Logo
+	}
+	return ""
+}
+
+func (m *Company) GetLocation() string {
+	if m != nil {
+		return m.Location
+	}
+	return ""
+}
+
+func (m *Company) GetFoundedYear() string {
+	if m != nil {
+		return m.FoundedYear
+	}
+	return ""
+}
+
+func (m *Company) GetNoOfEmployees() *Range {
+	if m != nil {
+		return m.NoOfEmployees
+	}
+	return nil
+}
+
+func (m *Company) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Company) GetLastActive() bool {
+	if m != nil {
+		return m.LastActive
+	}
+	return false
+}
+
+func (m *Company) GetHiringStatus() bool {
+	if m != nil {
+		return m.HiringStatus
+	}
+	return false
+}
+
+func (m *Company) GetSkills() []string {
+	if m != nil {
+		return m.Skills
+	}
+	return nil
+}
+
+func (m *Company) GetCreatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *Company) GetUpdatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return nil
+}
+
+type Empty struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Empty) Reset()         { *m = Empty{} }
+func (m *Empty) String() string { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()    {}
+func (*Empty) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{2}
+}
+
+func (m *Empty) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Empty.Unmarshal(m, b)
+}
+func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
+}
+func (m *Empty) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Empty.Merge(m, src)
+}
+func (m *Empty) XXX_Size() int {
+	return xxx_messageInfo_Empty.Size(m)
+}
+func (m *Empty) XXX_DiscardUnknown() {
+	xxx_messageInfo_Empty.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Empty proto.InternalMessageInfo
+
+type Id struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Id) Reset()         { *m = Id{} }
+func (m *Id) String() string { return proto.CompactTextString(m) }
+func (*Id) ProtoMessage()    {}
+func (*Id) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{3}
+}
+
+func (m *Id) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Id.Unmarshal(m, b)
+}
+func (m *Id) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Id.Marshal(b, m, deterministic)
+}
+func (m *Id) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Id.Merge(m, src)
+}
+func (m *Id) XXX_Size() int {
+	return xxx_messageInfo_Id.Size(m)
+}
+func (m *Id) XXX_DiscardUnknown() {
+	xxx_messageInfo_Id.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Id proto.InternalMessageInfo
+
+func (m *Id) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type ReadCompaniesRes struct {
+	Companies            []*Company `protobuf:"bytes,1,rep,name=companies,proto3" json:"companies,omitempty"`
+	Status               bool       `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *ReadCompaniesRes) Reset()         { *m = ReadCompaniesRes{} }
+func (m *ReadCompaniesRes) String() string { return proto.CompactTextString(m) }
+func (*ReadCompaniesRes) ProtoMessage()    {}
+func (*ReadCompaniesRes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a0b84a42fa06f626, []int{4}
+}
+
+func (m *ReadCompaniesRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReadCompaniesRes.Unmarshal(m, b)
+}
+func (m *ReadCompaniesRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReadCompaniesRes.Marshal(b, m, deterministic)
+}
+func (m *ReadCompaniesRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadCompaniesRes.Merge(m, src)
+}
+func (m *ReadCompaniesRes) XXX_Size() int {
+	return xxx_messageInfo_ReadCompaniesRes.Size(m)
+}
+func (m *ReadCompaniesRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadCompaniesRes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadCompaniesRes proto.InternalMessageInfo
+
+func (m *ReadCompaniesRes) GetCompanies() []*Company {
+	if m != nil {
+		return m.Companies
+	}
+	return nil
+}
+
+func (m *ReadCompaniesRes) GetStatus() bool {
+	if m != nil {
+		return m.Status
+	}
+	return false
+}
+
 func init() {
-	proto.RegisterType((*CreateCompanyReq)(nil), "company.CreateCompanyReq")
-	proto.RegisterType((*CreateCompanyRes)(nil), "company.CreateCompanyRes")
+	proto.RegisterType((*Range)(nil), "company.Range")
+	proto.RegisterType((*Company)(nil), "company.Company")
+	proto.RegisterType((*Empty)(nil), "company.Empty")
+	proto.RegisterType((*Id)(nil), "company.Id")
+	proto.RegisterType((*ReadCompaniesRes)(nil), "company.ReadCompaniesRes")
 }
 
 func init() {
@@ -132,18 +345,40 @@ func init() {
 }
 
 var fileDescriptor_a0b84a42fa06f626 = []byte{
-	// 167 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0x4e, 0x2d, 0x2a,
-	0xcb, 0x4c, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0xce, 0xcf, 0x2d, 0x48,
-	0xcc, 0xab, 0x54, 0xf2, 0xe2, 0x12, 0x70, 0x2e, 0x4a, 0x4d, 0x2c, 0x49, 0x75, 0x86, 0x08, 0x04,
-	0xa5, 0x16, 0x0a, 0x09, 0x71, 0xb1, 0xe4, 0x25, 0xe6, 0xa6, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70,
-	0x06, 0x81, 0xd9, 0x42, 0x4a, 0x5c, 0x3c, 0x29, 0xa9, 0xc5, 0xc9, 0x45, 0x99, 0x05, 0x25, 0x99,
-	0xf9, 0xf9, 0x79, 0x12, 0x4c, 0x60, 0x39, 0x14, 0x31, 0x25, 0x2b, 0x0c, 0xb3, 0x8a, 0x85, 0xc4,
-	0xb8, 0xd8, 0x8a, 0x4b, 0x12, 0x4b, 0x4a, 0x8b, 0xc1, 0xa6, 0x71, 0x04, 0x41, 0x79, 0x42, 0x7c,
-	0x5c, 0x4c, 0x99, 0x29, 0x50, 0x53, 0x98, 0x32, 0x53, 0x8c, 0x82, 0xb8, 0xd8, 0xa1, 0xba, 0x84,
-	0xdc, 0xb9, 0x78, 0x51, 0x8c, 0x11, 0x92, 0xd4, 0x83, 0xba, 0x56, 0x0f, 0xdd, 0xa9, 0x52, 0x38,
-	0xa5, 0x8a, 0x95, 0x18, 0x92, 0xd8, 0xc0, 0x7e, 0x35, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xc2,
-	0xeb, 0x4f, 0x95, 0xfc, 0x00, 0x00, 0x00,
+	// 514 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x52, 0xcd, 0x6a, 0xdb, 0x4c,
+	0x14, 0xb5, 0xa5, 0xf8, 0xef, 0xca, 0x72, 0xcc, 0xf0, 0xf1, 0x31, 0x15, 0x94, 0xa8, 0xea, 0xc6,
+	0x10, 0x50, 0x8a, 0x0b, 0x85, 0x42, 0x37, 0x6e, 0x9a, 0x45, 0x56, 0x05, 0xa5, 0x5d, 0xb4, 0x1b,
+	0x31, 0x96, 0xae, 0xdd, 0xa1, 0x92, 0x46, 0x48, 0xe3, 0x10, 0x3d, 0x45, 0x1f, 0xb1, 0xaf, 0x52,
+	0x74, 0x25, 0x59, 0x71, 0xb2, 0x68, 0x77, 0x73, 0xcf, 0x9c, 0xfb, 0x77, 0xce, 0x05, 0xbb, 0xc4,
+	0xe2, 0x5e, 0x46, 0xe8, 0xe7, 0x85, 0xd2, 0x8a, 0x4d, 0x22, 0x95, 0xe6, 0x22, 0xab, 0x9c, 0x8b,
+	0xbd, 0x52, 0xfb, 0x04, 0xaf, 0x08, 0xde, 0x1e, 0x76, 0x57, 0x5a, 0xa6, 0x58, 0x6a, 0x91, 0xe6,
+	0x0d, 0xd3, 0xbb, 0x84, 0x51, 0x20, 0xb2, 0x3d, 0xb2, 0x25, 0x98, 0xa9, 0xcc, 0xf8, 0xd0, 0x1d,
+	0xae, 0xcc, 0xa0, 0x7e, 0x12, 0x22, 0x1e, 0xb8, 0xd1, 0x22, 0xe2, 0xc1, 0xfb, 0x6d, 0xc2, 0xe4,
+	0xba, 0xa9, 0xcc, 0x16, 0x60, 0xc8, 0x98, 0xe8, 0xb3, 0xc0, 0x90, 0x31, 0x63, 0x70, 0x96, 0x89,
+	0x14, 0x89, 0x3e, 0x0b, 0xe8, 0xcd, 0x5e, 0x02, 0x44, 0x05, 0x0a, 0x8d, 0x71, 0xb8, 0xad, 0xb8,
+	0x49, 0x3f, 0xb3, 0x16, 0xf9, 0x58, 0xd5, 0x0d, 0x0e, 0x45, 0xc2, 0xcf, 0x08, 0xaf, 0x9f, 0x75,
+	0x91, 0x44, 0xed, 0x15, 0x1f, 0x35, 0x45, 0xea, 0x37, 0x73, 0x60, 0x9a, 0xa8, 0x48, 0x68, 0xa9,
+	0x32, 0x3e, 0x26, 0xfc, 0x18, 0xb3, 0x57, 0x30, 0xdf, 0xa9, 0x43, 0x16, 0x63, 0x1c, 0x56, 0x28,
+	0x0a, 0x3e, 0xa1, 0x7f, 0xab, 0xc5, 0xbe, 0xa1, 0x28, 0xd8, 0x3b, 0x38, 0xcf, 0x54, 0xa8, 0x76,
+	0x21, 0xa6, 0x79, 0xa2, 0x2a, 0xc4, 0x92, 0x4f, 0xdd, 0xe1, 0xca, 0x5a, 0x2f, 0xfc, 0x56, 0x24,
+	0x9f, 0x04, 0x08, 0xec, 0x4c, 0x7d, 0xde, 0xdd, 0x74, 0x24, 0xe6, 0x82, 0x15, 0x63, 0x19, 0x15,
+	0x32, 0xa7, 0xce, 0xd0, 0x54, 0x7e, 0x04, 0xb1, 0x0b, 0xb0, 0x12, 0x51, 0xea, 0x50, 0x44, 0x5a,
+	0xde, 0x23, 0xb7, 0xdc, 0xe1, 0x6a, 0x1a, 0x40, 0x0d, 0x6d, 0x08, 0x61, 0xaf, 0xc1, 0xfe, 0x21,
+	0x0b, 0x99, 0xed, 0xc3, 0x52, 0x0b, 0x7d, 0x28, 0xf9, 0x9c, 0x28, 0xf3, 0x06, 0xbc, 0x23, 0x8c,
+	0xfd, 0x0f, 0xe3, 0xf2, 0xa7, 0x4c, 0x92, 0x92, 0xdb, 0xae, 0xb9, 0x9a, 0x05, 0x6d, 0xc4, 0xde,
+	0xf7, 0xda, 0x09, 0xcd, 0x17, 0x34, 0xb2, 0xe3, 0x37, 0x76, 0xfa, 0x9d, 0x9d, 0xfe, 0x97, 0xce,
+	0xce, 0xa3, 0xae, 0x1b, 0x5d, 0xa7, 0x1e, 0xf2, 0xb8, 0x4b, 0x3d, 0xff, 0x7b, 0x6a, 0xcb, 0xde,
+	0x68, 0x6f, 0x02, 0xa3, 0x9b, 0x34, 0xd7, 0x95, 0xf7, 0x1f, 0x18, 0xb7, 0xf1, 0x53, 0x93, 0xbd,
+	0xef, 0xb0, 0x0c, 0x50, 0xc4, 0xcd, 0x0d, 0x48, 0x2c, 0x03, 0x2c, 0x99, 0x0f, 0xb3, 0xa8, 0x8b,
+	0xf9, 0xd0, 0x35, 0x57, 0xd6, 0x7a, 0x79, 0x94, 0xb6, 0xbd, 0x96, 0xa0, 0xa7, 0xd0, 0xc2, 0x8d,
+	0x1c, 0x06, 0xc9, 0xd1, 0x46, 0xeb, 0x5f, 0x06, 0x2c, 0x5a, 0xfa, 0x5d, 0x73, 0xcc, 0xec, 0x0d,
+	0xd8, 0xd7, 0xb4, 0x55, 0x77, 0x74, 0xcf, 0x0a, 0x3b, 0xd6, 0x11, 0xb9, 0x8d, 0xbd, 0x01, 0xfb,
+	0x00, 0xf6, 0xc9, 0x80, 0xac, 0x77, 0x99, 0xf6, 0x72, 0x5e, 0xf4, 0xae, 0x3f, 0x59, 0xc4, 0x1b,
+	0x30, 0x1f, 0xac, 0x1e, 0xad, 0xd8, 0xe3, 0xda, 0xce, 0xb3, 0xd6, 0xde, 0xa0, 0x9e, 0xef, 0x2b,
+	0x49, 0xf7, 0xcf, 0xf3, 0x5d, 0x82, 0xfd, 0x09, 0x13, 0xec, 0x33, 0x4e, 0x7a, 0x9c, 0x92, 0xb7,
+	0x63, 0xf2, 0xea, 0xed, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xb8, 0x14, 0x52, 0xc1, 0xdd, 0x03,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -154,74 +389,216 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// CompanyClient is the client API for Company service.
+// CompanyServiceClient is the client API for CompanyService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type CompanyClient interface {
-	/// Used to create an company entity
-	CreateCompany(ctx context.Context, in *CreateCompanyReq, opts ...grpc.CallOption) (*CreateCompanyRes, error)
+type CompanyServiceClient interface {
+	CreateCompany(ctx context.Context, in *Company, opts ...grpc.CallOption) (*Id, error)
+	ReadCompanies(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ReadCompaniesRes, error)
+	ReadCompany(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Company, error)
+	UpdateCompany(ctx context.Context, in *Company, opts ...grpc.CallOption) (*Id, error)
+	DeleteCompany(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Id, error)
 }
 
-type companyClient struct {
+type companyServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewCompanyClient(cc grpc.ClientConnInterface) CompanyClient {
-	return &companyClient{cc}
+func NewCompanyServiceClient(cc grpc.ClientConnInterface) CompanyServiceClient {
+	return &companyServiceClient{cc}
 }
 
-func (c *companyClient) CreateCompany(ctx context.Context, in *CreateCompanyReq, opts ...grpc.CallOption) (*CreateCompanyRes, error) {
-	out := new(CreateCompanyRes)
-	err := c.cc.Invoke(ctx, "/company.Company/CreateCompany", in, out, opts...)
+func (c *companyServiceClient) CreateCompany(ctx context.Context, in *Company, opts ...grpc.CallOption) (*Id, error) {
+	out := new(Id)
+	err := c.cc.Invoke(ctx, "/company.CompanyService/CreateCompany", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CompanyServer is the server API for Company service.
-type CompanyServer interface {
-	/// Used to create an company entity
-	CreateCompany(context.Context, *CreateCompanyReq) (*CreateCompanyRes, error)
+func (c *companyServiceClient) ReadCompanies(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ReadCompaniesRes, error) {
+	out := new(ReadCompaniesRes)
+	err := c.cc.Invoke(ctx, "/company.CompanyService/ReadCompanies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedCompanyServer can be embedded to have forward compatible implementations.
-type UnimplementedCompanyServer struct {
+func (c *companyServiceClient) ReadCompany(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Company, error) {
+	out := new(Company)
+	err := c.cc.Invoke(ctx, "/company.CompanyService/ReadCompany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-func (*UnimplementedCompanyServer) CreateCompany(ctx context.Context, req *CreateCompanyReq) (*CreateCompanyRes, error) {
+func (c *companyServiceClient) UpdateCompany(ctx context.Context, in *Company, opts ...grpc.CallOption) (*Id, error) {
+	out := new(Id)
+	err := c.cc.Invoke(ctx, "/company.CompanyService/UpdateCompany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *companyServiceClient) DeleteCompany(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Id, error) {
+	out := new(Id)
+	err := c.cc.Invoke(ctx, "/company.CompanyService/DeleteCompany", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CompanyServiceServer is the server API for CompanyService service.
+type CompanyServiceServer interface {
+	CreateCompany(context.Context, *Company) (*Id, error)
+	ReadCompanies(context.Context, *Empty) (*ReadCompaniesRes, error)
+	ReadCompany(context.Context, *Id) (*Company, error)
+	UpdateCompany(context.Context, *Company) (*Id, error)
+	DeleteCompany(context.Context, *Id) (*Id, error)
+}
+
+// UnimplementedCompanyServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCompanyServiceServer struct {
+}
+
+func (*UnimplementedCompanyServiceServer) CreateCompany(ctx context.Context, req *Company) (*Id, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCompany not implemented")
 }
-
-func RegisterCompanyServer(s *grpc.Server, srv CompanyServer) {
-	s.RegisterService(&_Company_serviceDesc, srv)
+func (*UnimplementedCompanyServiceServer) ReadCompanies(ctx context.Context, req *Empty) (*ReadCompaniesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadCompanies not implemented")
+}
+func (*UnimplementedCompanyServiceServer) ReadCompany(ctx context.Context, req *Id) (*Company, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadCompany not implemented")
+}
+func (*UnimplementedCompanyServiceServer) UpdateCompany(ctx context.Context, req *Company) (*Id, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCompany not implemented")
+}
+func (*UnimplementedCompanyServiceServer) DeleteCompany(ctx context.Context, req *Id) (*Id, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCompany not implemented")
 }
 
-func _Company_CreateCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCompanyReq)
+func RegisterCompanyServiceServer(s *grpc.Server, srv CompanyServiceServer) {
+	s.RegisterService(&_CompanyService_serviceDesc, srv)
+}
+
+func _CompanyService_CreateCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Company)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CompanyServer).CreateCompany(ctx, in)
+		return srv.(CompanyServiceServer).CreateCompany(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/company.Company/CreateCompany",
+		FullMethod: "/company.CompanyService/CreateCompany",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyServer).CreateCompany(ctx, req.(*CreateCompanyReq))
+		return srv.(CompanyServiceServer).CreateCompany(ctx, req.(*Company))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Company_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "company.Company",
-	HandlerType: (*CompanyServer)(nil),
+func _CompanyService_ReadCompanies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompanyServiceServer).ReadCompanies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/company.CompanyService/ReadCompanies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompanyServiceServer).ReadCompanies(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CompanyService_ReadCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompanyServiceServer).ReadCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/company.CompanyService/ReadCompany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompanyServiceServer).ReadCompany(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CompanyService_UpdateCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Company)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompanyServiceServer).UpdateCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/company.CompanyService/UpdateCompany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompanyServiceServer).UpdateCompany(ctx, req.(*Company))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CompanyService_DeleteCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Id)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompanyServiceServer).DeleteCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/company.CompanyService/DeleteCompany",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompanyServiceServer).DeleteCompany(ctx, req.(*Id))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _CompanyService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "company.CompanyService",
+	HandlerType: (*CompanyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateCompany",
-			Handler:    _Company_CreateCompany_Handler,
+			Handler:    _CompanyService_CreateCompany_Handler,
+		},
+		{
+			MethodName: "ReadCompanies",
+			Handler:    _CompanyService_ReadCompanies_Handler,
+		},
+		{
+			MethodName: "ReadCompany",
+			Handler:    _CompanyService_ReadCompany_Handler,
+		},
+		{
+			MethodName: "UpdateCompany",
+			Handler:    _CompanyService_UpdateCompany_Handler,
+		},
+		{
+			MethodName: "DeleteCompany",
+			Handler:    _CompanyService_DeleteCompany_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
