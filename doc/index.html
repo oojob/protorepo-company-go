@@ -183,11 +183,19 @@
                 </li>
               
                 <li>
+                  <a href="#company.CompanyAllResponse"><span class="badge">M</span>CompanyAllResponse</a>
+                </li>
+              
+                <li>
                   <a href="#company.Empty"><span class="badge">M</span>Empty</a>
                 </li>
               
                 <li>
                   <a href="#company.Id"><span class="badge">M</span>Id</a>
+                </li>
+              
+                <li>
+                  <a href="#company.Pagination"><span class="badge">M</span>Pagination</a>
                 </li>
               
                 <li>
@@ -331,6 +339,30 @@
 
         
       
+        <h3 id="company.CompanyAllResponse">CompanyAllResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>companies</td>
+                  <td><a href="#company.Company">Company</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="company.Empty">Empty</h3>
         <p></p>
 
@@ -351,6 +383,37 @@
                 <tr>
                   <td>id</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="company.Pagination">Pagination</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>skip</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -418,6 +481,13 @@
                 <td>ReadCompanies</td>
                 <td><a href="#company.Empty">Empty</a></td>
                 <td><a href="#company.Company">Company</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ReadAllCompanies</td>
+                <td><a href="#company.Pagination">Pagination</a></td>
+                <td><a href="#company.CompanyAllResponse">CompanyAllResponse</a></td>
                 <td><p></p></td>
               </tr>
             
