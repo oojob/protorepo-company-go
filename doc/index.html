@@ -191,6 +191,14 @@
                 </li>
               
                 <li>
+                  <a href="#company.HealthCheckRequest"><span class="badge">M</span>HealthCheckRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#company.HealthCheckResponse"><span class="badge">M</span>HealthCheckResponse</a>
+                </li>
+              
+                <li>
                   <a href="#company.Id"><span class="badge">M</span>Id</a>
                 </li>
               
@@ -202,6 +210,10 @@
                   <a href="#company.Range"><span class="badge">M</span>Range</a>
                 </li>
               
+              
+                <li>
+                  <a href="#company.HealthCheckResponse.ServingStatus"><span class="badge">E</span>HealthCheckResponse.ServingStatus</a>
+                </li>
               
               
               
@@ -370,6 +382,54 @@
 
         
       
+        <h3 id="company.HealthCheckRequest">HealthCheckRequest</h3>
+        <p>health report</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>service</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="company.HealthCheckResponse">HealthCheckResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#company.HealthCheckResponse.ServingStatus">HealthCheckResponse.ServingStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="company.Id">Id</h3>
         <p></p>
 
@@ -458,6 +518,35 @@
       
 
       
+        <h3 id="company.HealthCheckResponse.ServingStatus">HealthCheckResponse.ServingStatus</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVING</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_SERVING</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
 
@@ -509,6 +598,20 @@
                 <td>DeleteCompany</td>
                 <td><a href="#company.Id">Id</a></td>
                 <td><a href="#company.Id">Id</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Check</td>
+                <td><a href="#company.HealthCheckRequest">HealthCheckRequest</a></td>
+                <td><a href="#company.HealthCheckResponse">HealthCheckResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Watch</td>
+                <td><a href="#company.HealthCheckRequest">HealthCheckRequest</a></td>
+                <td><a href="#company.HealthCheckResponse">HealthCheckResponse</a> stream</td>
                 <td><p></p></td>
               </tr>
             
