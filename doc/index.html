@@ -175,7 +175,7 @@
         
           
           <li>
-            <a href="#service.proto">service.proto</a>
+            <a href="#services%2fcompany%2fservice.proto">services/company/service.proto</a>
             <ul>
               
                 <li>
@@ -186,34 +186,6 @@
                   <a href="#company.CompanyAllResponse"><span class="badge">M</span>CompanyAllResponse</a>
                 </li>
               
-                <li>
-                  <a href="#company.Empty"><span class="badge">M</span>Empty</a>
-                </li>
-              
-                <li>
-                  <a href="#company.HealthCheckRequest"><span class="badge">M</span>HealthCheckRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#company.HealthCheckResponse"><span class="badge">M</span>HealthCheckResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#company.Id"><span class="badge">M</span>Id</a>
-                </li>
-              
-                <li>
-                  <a href="#company.Pagination"><span class="badge">M</span>Pagination</a>
-                </li>
-              
-                <li>
-                  <a href="#company.Range"><span class="badge">M</span>Range</a>
-                </li>
-              
-              
-                <li>
-                  <a href="#company.HealthCheckResponse.ServingStatus"><span class="badge">E</span>HealthCheckResponse.ServingStatus</a>
-                </li>
               
               
               
@@ -231,13 +203,13 @@
     
       
       <div class="file-heading">
-        <h2 id="service.proto">service.proto</h2><a href="#title">Top</a>
+        <h2 id="services/company/service.proto">services/company/service.proto</h2><a href="#title">Top</a>
       </div>
-      <p>Company entity related messages.</p><p>This file is resposible for all operation related to company entity.</p>
+      <p>Created on Sun Apr 27 2020</p><p>Company entity related messages.</p><p>This file is resposible for all operation related to company entity.</p><p>@authors nirajgeorgian@oojob.io (Niraj Kishore)</p><p>Copyright (c) 2020 - oojob</p>
 
       
         <h3 id="company.Company">Company</h3>
-        <p></p>
+        <p>Comapny is used for storing companies data</p>
 
         
           <table class="field-table">
@@ -247,21 +219,14 @@
             <tbody>
               
                 <tr>
-                  <td>id</td>
-                  <td><a href="#string">string</a></td>
+                  <td>identity</td>
+                  <td><a href="#oojob.protobuf.Identifier">oojob.protobuf.Identifier</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>created_by</td>
+                  <td>admin</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -282,8 +247,15 @@
                 </tr>
               
                 <tr>
-                  <td>location</td>
-                  <td><a href="#string">string</a></td>
+                  <td>employees</td>
+                  <td><a href="#oojob.protobuf.Range">oojob.protobuf.Range</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>place</td>
+                  <td><a href="#oojob.protobuf.Place">oojob.protobuf.Place</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -291,27 +263,6 @@
                 <tr>
                   <td>founded_year</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>no_of_employees</td>
-                  <td><a href="#company.Range">Range</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_active</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -331,15 +282,8 @@
                 </tr>
               
                 <tr>
-                  <td>created_at</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>updated_at</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>metadata</td>
+                  <td><a href="#oojob.protobuf.Metadata">oojob.protobuf.Metadata</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -352,7 +296,7 @@
         
       
         <h3 id="company.CompanyAllResponse">CompanyAllResponse</h3>
-        <p></p>
+        <p>CompanyAllResponse returns an array of companies</p>
 
         
           <table class="field-table">
@@ -375,184 +319,14 @@
 
         
       
-        <h3 id="company.Empty">Empty</h3>
-        <p></p>
 
-        
-
-        
-      
-        <h3 id="company.HealthCheckRequest">HealthCheckRequest</h3>
-        <p>health report</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>service</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="company.HealthCheckResponse">HealthCheckResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#company.HealthCheckResponse.ServingStatus">HealthCheckResponse.ServingStatus</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="company.Id">Id</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="company.Pagination">Pagination</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>skip</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>limit</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="company.Range">Range</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>min</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-        <h3 id="company.HealthCheckResponse.ServingStatus">HealthCheckResponse.ServingStatus</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>UNKNOWN</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SERVING</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>NOT_SERVING</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
 
       
 
       
         <h3 id="company.CompanyService">CompanyService</h3>
-        <p></p>
+        <p>CompanyService service file for company entity</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -562,56 +336,56 @@
               <tr>
                 <td>CreateCompany</td>
                 <td><a href="#company.Company">Company</a></td>
-                <td><a href="#company.Id">Id</a></td>
+                <td><a href="#oojob.protobuf.Id">.oojob.protobuf.Id</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ReadCompany</td>
+                <td><a href="#oojob.protobuf.Id">.oojob.protobuf.Id</a></td>
+                <td><a href="#company.Company">Company</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>ReadCompanies</td>
-                <td><a href="#company.Empty">Empty</a></td>
+                <td><a href="#oojob.protobuf.Empty">.oojob.protobuf.Empty</a></td>
                 <td><a href="#company.Company">Company</a> stream</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>ReadAllCompanies</td>
-                <td><a href="#company.Pagination">Pagination</a></td>
+                <td><a href="#oojob.protobuf.Pagination">.oojob.protobuf.Pagination</a></td>
                 <td><a href="#company.CompanyAllResponse">CompanyAllResponse</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>ReadCompany</td>
-                <td><a href="#company.Id">Id</a></td>
-                <td><a href="#company.Company">Company</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>UpdateCompany</td>
                 <td><a href="#company.Company">Company</a></td>
-                <td><a href="#company.Id">Id</a></td>
+                <td><a href="#oojob.protobuf.Id">.oojob.protobuf.Id</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DeleteCompany</td>
-                <td><a href="#company.Id">Id</a></td>
-                <td><a href="#company.Id">Id</a></td>
+                <td><a href="#oojob.protobuf.Id">.oojob.protobuf.Id</a></td>
+                <td><a href="#oojob.protobuf.Id">.oojob.protobuf.Id</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>Check</td>
-                <td><a href="#company.HealthCheckRequest">HealthCheckRequest</a></td>
-                <td><a href="#company.HealthCheckResponse">HealthCheckResponse</a></td>
+                <td><a href="#oojob.protobuf.HealthCheckRequest">.oojob.protobuf.HealthCheckRequest</a></td>
+                <td><a href="#oojob.protobuf.HealthCheckResponse">.oojob.protobuf.HealthCheckResponse</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>Watch</td>
-                <td><a href="#company.HealthCheckRequest">HealthCheckRequest</a></td>
-                <td><a href="#company.HealthCheckResponse">HealthCheckResponse</a> stream</td>
+                <td><a href="#oojob.protobuf.HealthCheckRequest">.oojob.protobuf.HealthCheckRequest</a></td>
+                <td><a href="#oojob.protobuf.HealthCheckResponse">.oojob.protobuf.HealthCheckResponse</a> stream</td>
                 <td><p></p></td>
               </tr>
             
